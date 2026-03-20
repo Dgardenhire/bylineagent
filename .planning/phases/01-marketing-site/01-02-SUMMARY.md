@@ -119,6 +119,10 @@ None — this plan only builds components.
 - CTA buttons have href="#" — Plan 03 will wire them to Stripe checkout and onboarding flow
 - Page is fully static (SSG) — ready for Vercel deployment
 
+## Self-Check: PASSED
+
+All 9 component/page files confirmed present on disk. Task commits 73c4803 and d4e6289 confirmed in git log. npm run build exits with zero errors. All 10 requirements (SITE-01 through SITE-10) marked complete.
+
 ---
 *Phase: 01-marketing-site*
 *Completed: 2026-03-20*
