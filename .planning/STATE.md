@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-03-20)
 Phase: 1 of 4 (Marketing Site)
 Plan: 0 of TBD in current phase
 Status: Ready to plan
-Last activity: 2026-03-20 — Roadmap created, ready for Phase 1 planning
+Last activity: 2026-03-20 — Requirements and roadmap finalized (38 requirements, 4 phases)
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -23,28 +23,55 @@ Progress: [░░░░░░░░░░] 0%
 - Average duration: —
 - Total execution time: 0 hours
 
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| — | — | — | — |
-
 *Updated after each plan completion*
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
-
 - [Init]: Next.js 16 + Tailwind CSS + TypeScript + Vercel
-- [Init]: DM Sans + DM Mono fonts (Google Fonts CDN)
+- [Init]: DM Sans + DM Mono fonts (Google Fonts via next/font)
 - [Init]: Dark navy #0A0C14 background, gold #C9A227 accent
 - [Init]: Anti-AI aesthetic (Perplexity Computer guide standards)
 - [Init]: Email delivery only for v1 (no content calendar UI)
 - [Init]: Existing LINCHPIN Stripe account, separate product/price
 - [Init]: Vercel AI Gateway for Claude API access (OIDC auth)
+- [Init]: "By LINCHPIN" attribution on site for trust signal
+- [Init]: Automate everything possible — Stripe, Supabase, Notion, Vercel env vars via CLI/MCP
+- [Init]: All marketing copy extracted into src/lib/content.ts as typed constants (single source of truth)
+- [Init]: Topic deduplication within 90 days to prevent content decay
+- [Init]: waitUntil() pattern for cron to handle Hobby tier timeout
+- [Init]: /welcome verifies Stripe session directly to handle webhook race condition
+
+### Known Challenges + Mitigations
+
+1. **Vercel Hobby cron timeout (10s)**: Weekly generation exceeds this with multiple customers.
+   → Mitigation: `waitUntil()` for background processing. Upgrade to Pro ($20/mo, 60s) at 10+ customers.
+
+2. **Race condition**: User reaches /welcome before Stripe webhook fires.
+   → Mitigation: /welcome verifies Stripe session directly via API, creates customer row if webhook hasn't yet.
+
+3. **Voice Profile quality**: Core differentiator. Garbage samples → garbage profile.
+   → Mitigation: Clear guidance on onboarding form about what "good" writing samples are. Damon is Customer #1 test.
+
+4. **Email deliverability**: New domain needs SPF, DKIM, DMARC records.
+   → Mitigation: Resend provides these — Damon adds DNS records before first send.
+
+5. **Content quality decay**: 6 topic lanes × 5 posts/week = repetitive by month 3.
+   → Mitigation: Topic deduplication (PIPE-08). v2: customer feedback loop, external signal ingestion.
+
+6. **Conversion without trial**: Prospects can't see voice-matched output before paying.
+   → Mitigation: Strong sample posts on marketing site. v2: free voice sample before payment.
+
+### Damon Must Do Manually (with step-by-step instructions)
+
+| Step | When | Automated? |
+|------|------|-----------|
+| Create Resend account + verify domain | Before Phase 2 testing | No — signup + DNS records |
+| Create Supabase project | Before Phase 2 | Partial — project creation manual, schema automated |
+| Point bylineagent.com to Vercel | Before Phase 4 go-live | No — CNAME at registrar |
+| Switch Stripe to live mode | Phase 4 go-live | No — Stripe dashboard |
+| (Optional) Meta Pixel + Facebook Page | Post-launch ads | No — Facebook Business Manager |
 
 ### Pending Todos
 
@@ -52,13 +79,14 @@ None yet.
 
 ### Blockers/Concerns
 
-- [Phase 2]: Damon needs to create Stripe product ($49/mo recurring) and copy Price ID
-- [Phase 2]: Damon needs to create Supabase project and run SQL schema
-- [Phase 2]: Damon needs to create Resend account and verify bylineagent.com domain
-- [Phase 4]: Damon needs to point bylineagent.com domain to Vercel (CNAME record)
+- [Phase 2]: Resend account needed (Damon creates, DNS verification)
+- [Phase 2]: Supabase project needed (Damon picks region/org, Claude runs schema)
+- [Phase 4]: Domain CNAME record (Damon at registrar)
+- [Strategic]: No free trial/sample mechanism in v1 — conversion risk. Monitor and add if needed.
+- [Strategic]: Tagline "Zero effort" is slightly dishonest — customer still copy-pastes 5 posts. Consider "10 minutes/week instead of 10 hours."
 
 ## Session Continuity
 
 Last session: 2026-03-20
-Stopped at: Roadmap created, 28 requirements mapped to 4 phases
+Stopped at: All planning artifacts finalized, ready for Phase 1 planning + execution
 Resume file: None
