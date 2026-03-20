@@ -40,13 +40,13 @@
 - [ ] **PIPE-09**: Pipeline uses `waitUntil()` for background processing (Vercel Hobby cron timeout is 10s)
 
 ### Infrastructure
-- [ ] **INFRA-01**: Next.js 16 App Router project deployed on Vercel
+- [x] **INFRA-01**: Next.js 16 App Router project deployed on Vercel
 - [ ] **INFRA-02**: Supabase database with customers and posts tables (schema applied via MCP)
 - [ ] **INFRA-03**: Environment variables configured in Vercel via CLI (`vercel env add`)
 - [ ] **INFRA-04**: Domain bylineagent.com pointed to Vercel deployment
 - [ ] **INFRA-05**: OG metadata and branded OG image on all pages
 - [ ] **INFRA-06**: Notion Customers + Posts databases created via MCP with correct property schemas
-- [ ] **INFRA-07**: GitHub repo created via `gh repo create`
+- [x] **INFRA-07**: GitHub repo created via `gh repo create`
 - [ ] **INFRA-08**: Stripe product + price created via Stripe API/CLI (automated)
 - [ ] **INFRA-09**: Stripe webhook endpoint registered via Stripe API/CLI (automated)
 - [ ] **INFRA-10**: `.env.example` with all 12 required environment variables documented

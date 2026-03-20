@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: planning
+stopped_at: Completed 01-marketing-site-01-PLAN.md
+last_updated: "2026-03-20T22:43:20.163Z"
+last_activity: 2026-03-20 — Requirements and roadmap finalized (38 requirements, 4 phases)
+progress:
+  total_phases: 4
+  completed_phases: 0
+  total_plans: 3
+  completed_plans: 1
+  percent: 33
+---
+
 # Project State
 
 ## Project Reference
@@ -14,7 +30,7 @@ Plan: 0 of TBD in current phase
 Status: Ready to plan
 Last activity: 2026-03-20 — Requirements and roadmap finalized (38 requirements, 4 phases)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███░░░░░░░] 33%
 
 ## Performance Metrics
 
@@ -42,6 +58,8 @@ Progress: [░░░░░░░░░░] 0%
 - [Init]: Topic deduplication within 90 days to prevent content decay
 - [Init]: waitUntil() pattern for cron to handle Hobby tier timeout
 - [Init]: /welcome verifies Stripe session directly to handle webhook race condition
+- [Phase 01-marketing-site]: Tailwind v4 uses CSS @theme block — no tailwind.config.ts, design tokens in globals.css
+- [Phase 01-marketing-site]: GitHub repo created as public: github.com/Dgardenhire/bylineagent
 
 ### Known Challenges + Mitigations
 
@@ -72,6 +90,7 @@ Progress: [░░░░░░░░░░] 0%
 | Point bylineagent.com to Vercel | Before Phase 4 go-live | No — CNAME at registrar |
 | Switch Stripe to live mode | Phase 4 go-live | No — Stripe dashboard |
 | (Optional) Meta Pixel + Facebook Page | Post-launch ads | No — Facebook Business Manager |
+| Phase 01-marketing-site P01 | 6 | 3 tasks | 7 files |
 
 ### Pending Todos
 
@@ -87,6 +106,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20
-Stopped at: All planning artifacts finalized, ready for Phase 1 planning + execution
+Last session: 2026-03-20T22:43:20.160Z
+Stopped at: Completed 01-marketing-site-01-PLAN.md
 Resume file: None
