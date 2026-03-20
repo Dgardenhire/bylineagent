@@ -25,7 +25,12 @@ Four phases that move from zero to a paying product. Phase 1 ships the marketing
   5. CTA buttons exist (wired to # for now, connected in Phase 2)
   6. LINCHPIN attribution visible in footer
   7. GitHub repo created, code pushed, deployed to Vercel preview URL
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Scaffold Next.js 16 project, content data layer, GitHub repo
+- [ ] 01-02-PLAN.md — Build all 7 marketing sections (Nav, Hero, HowItWorks, SampleOutput, Compare, Pricing, FAQ, Footer)
+- [ ] 01-03-PLAN.md — Deploy to Vercel, browser verification, design approval
 
 **Automated steps in this phase:**
 - `gh repo create bylineagent --public --source=. --remote=origin`
@@ -95,7 +100,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Marketing Site | 0/TBD | Not started | - |
+| 1. Marketing Site | 0/3 | Planning complete | - |
 | 2. Checkout + Onboarding + Infra | 0/TBD | Not started | - |
 | 3. Weekly Pipeline | 0/TBD | Not started | - |
 | 4. Launch Polish | 0/TBD | Not started | - |
