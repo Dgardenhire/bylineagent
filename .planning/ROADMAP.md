@@ -6,7 +6,7 @@ Four phases that move from zero to a paying product. Phase 1 ships the marketing
 
 ## Phases
 
-- [ ] **Phase 1: Marketing Site** - Static site deployed on Vercel — the thing that sells
+- [x] **Phase 1: Marketing Site** - Static site deployed on Vercel — the thing that sells (completed 2026-03-20)
 - [ ] **Phase 2: Checkout + Onboarding + Infra** - Stripe, Supabase, Notion, onboarding form, voice profile generation
 - [ ] **Phase 3: Weekly Pipeline** - AI generation pipeline, quality gate, email delivery, Notion sync
 - [ ] **Phase 4: Launch Polish** - Domain, OG metadata, mobile polish, E2E test, go-live
@@ -25,7 +25,7 @@ Four phases that move from zero to a paying product. Phase 1 ships the marketing
   5. CTA buttons exist (wired to # for now, connected in Phase 2)
   6. LINCHPIN attribution visible in footer
   7. GitHub repo created, code pushed, deployed to Vercel preview URL
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 01-01-PLAN.md — Scaffold Next.js 16 project, content data layer, GitHub repo
@@ -100,7 +100,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Marketing Site | 2/3 | In Progress|  |
+| 1. Marketing Site | 3/3 | Complete   | 2026-03-20 |
 | 2. Checkout + Onboarding + Infra | 0/TBD | Not started | - |
 | 3. Weekly Pipeline | 0/TBD | Not started | - |
 | 4. Launch Polish | 0/TBD | Not started | - |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-marketing-site-02-PLAN.md
-last_updated: "2026-03-20T22:49:23.394Z"
+stopped_at: Completed 01-marketing-site-03-PLAN.md
+last_updated: "2026-03-20T23:38:52.646Z"
 last_activity: 2026-03-20 — Requirements and roadmap finalized (38 requirements, 4 phases)
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 3
-  completed_plans: 2
+  completed_plans: 3
   percent: 33
 ---
 
@@ -63,6 +63,7 @@ Progress: [███░░░░░░░] 33%
 - [Phase 01-marketing-site]: use client only for SampleOutput and FAQ — Server Components by default for all other marketing sections
 - [Phase 01-marketing-site]: HTML table for Compare section per CLAUDE.md rule, overflow-x-auto for mobile
 - [Phase 01-marketing-site]: iconMap pattern maps HOW_IT_WORKS_STEPS.icon strings to LucideIcon components at render time
+- [Phase 01-marketing-site]: Vercel deployment confirmed at https://bylineagent.vercel.app — Phase 1 Marketing Site complete
 
 ### Known Challenges + Mitigations
 
@@ -95,6 +96,7 @@ Progress: [███░░░░░░░] 33%
 | (Optional) Meta Pixel + Facebook Page | Post-launch ads | No — Facebook Business Manager |
 | Phase 01-marketing-site P01 | 6 | 3 tasks | 7 files |
 | Phase 01-marketing-site P02 | 3 | 2 tasks | 10 files |
+| Phase 01-marketing-site P03 | 5 | 2 tasks | 0 files |
 
 ### Pending Todos
 
@@ -110,6 +112,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20T22:49:23.389Z
-Stopped at: Completed 01-marketing-site-02-PLAN.md
+Last session: 2026-03-20T23:38:52.642Z
+Stopped at: Completed 01-marketing-site-03-PLAN.md
 Resume file: None
