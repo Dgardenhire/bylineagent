@@ -1,7 +1,23 @@
+import { Nav } from "@/components/Nav";
+import { Hero } from "@/components/Hero";
+import { HowItWorks } from "@/components/HowItWorks";
+import { SampleOutput } from "@/components/SampleOutput";
+import { Compare } from "@/components/Compare";
+import { Pricing } from "@/components/Pricing";
+import { FAQ } from "@/components/FAQ";
+import { Footer } from "@/components/Footer";
+
 export default function Home() {
   return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-text-primary">BylineAgent</h1>
-    </main>
+    <>
+      <Nav />
+      <Hero />
+      <HowItWorks />
+      <SampleOutput />
+      <Compare />
+      <Pricing />
+      <FAQ />
+      <Footer />
+    </>
   );
 }
