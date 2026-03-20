@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-marketing-site-01-PLAN.md
-last_updated: "2026-03-20T22:43:20.163Z"
+stopped_at: Completed 01-marketing-site-02-PLAN.md
+last_updated: "2026-03-20T22:49:23.394Z"
 last_activity: 2026-03-20 — Requirements and roadmap finalized (38 requirements, 4 phases)
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
   percent: 33
 ---
 
@@ -60,6 +60,9 @@ Progress: [███░░░░░░░] 33%
 - [Init]: /welcome verifies Stripe session directly to handle webhook race condition
 - [Phase 01-marketing-site]: Tailwind v4 uses CSS @theme block — no tailwind.config.ts, design tokens in globals.css
 - [Phase 01-marketing-site]: GitHub repo created as public: github.com/Dgardenhire/bylineagent
+- [Phase 01-marketing-site]: use client only for SampleOutput and FAQ — Server Components by default for all other marketing sections
+- [Phase 01-marketing-site]: HTML table for Compare section per CLAUDE.md rule, overflow-x-auto for mobile
+- [Phase 01-marketing-site]: iconMap pattern maps HOW_IT_WORKS_STEPS.icon strings to LucideIcon components at render time
 
 ### Known Challenges + Mitigations
 
@@ -91,6 +94,7 @@ Progress: [███░░░░░░░] 33%
 | Switch Stripe to live mode | Phase 4 go-live | No — Stripe dashboard |
 | (Optional) Meta Pixel + Facebook Page | Post-launch ads | No — Facebook Business Manager |
 | Phase 01-marketing-site P01 | 6 | 3 tasks | 7 files |
+| Phase 01-marketing-site P02 | 3 | 2 tasks | 10 files |
 
 ### Pending Todos
 
@@ -106,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-20T22:43:20.160Z
-Stopped at: Completed 01-marketing-site-01-PLAN.md
+Last session: 2026-03-20T22:49:23.389Z
+Stopped at: Completed 01-marketing-site-02-PLAN.md
 Resume file: None

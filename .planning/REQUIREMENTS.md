@@ -3,16 +3,16 @@
 ## v1 Requirements
 
 ### Marketing Site
-- [ ] **SITE-01**: Visitor sees a compelling hero with tagline, price, and single CTA ("Start Free Trial")
-- [ ] **SITE-02**: Visitor understands how it works in 4 steps (Sign up → Share samples → AI learns voice → Posts delivered)
-- [ ] **SITE-03**: Visitor can read 3 sample LinkedIn posts that demonstrate voice-matched output quality
-- [ ] **SITE-04**: Visitor can compare BylineAgent to self-serve tools and human ghostwriters in a side-by-side table
-- [ ] **SITE-05**: Visitor sees pricing ($49/mo) with feature list and clear CTA
-- [ ] **SITE-06**: Visitor can expand/collapse 7 FAQ items addressing common objections
-- [ ] **SITE-07**: Site passes anti-AI aesthetic checklist (no purple gradients, no icon grids, no generic copy)
-- [ ] **SITE-08**: Site is responsive at 375px, 768px, and 1024px without horizontal scroll
-- [ ] **SITE-09**: Navigation is sticky with smooth-scroll to sections
-- [ ] **SITE-10**: "By LINCHPIN" or Damon Gardenhire attribution visible as trust signal (footer or about line)
+- [x] **SITE-01**: Visitor sees a compelling hero with tagline, price, and single CTA ("Start Free Trial")
+- [x] **SITE-02**: Visitor understands how it works in 4 steps (Sign up → Share samples → AI learns voice → Posts delivered)
+- [x] **SITE-03**: Visitor can read 3 sample LinkedIn posts that demonstrate voice-matched output quality
+- [x] **SITE-04**: Visitor can compare BylineAgent to self-serve tools and human ghostwriters in a side-by-side table
+- [x] **SITE-05**: Visitor sees pricing ($49/mo) with feature list and clear CTA
+- [x] **SITE-06**: Visitor can expand/collapse 7 FAQ items addressing common objections
+- [x] **SITE-07**: Site passes anti-AI aesthetic checklist (no purple gradients, no icon grids, no generic copy)
+- [x] **SITE-08**: Site is responsive at 375px, 768px, and 1024px without horizontal scroll
+- [x] **SITE-09**: Navigation is sticky with smooth-scroll to sections
+- [x] **SITE-10**: "By LINCHPIN" or Damon Gardenhire attribution visible as trust signal (footer or about line)
 
 ### Payments
 - [ ] **PAY-01**: Visitor can click CTA → Stripe Checkout session opens for $49/mo subscription
