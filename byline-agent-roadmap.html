@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byline Agent — Full Build Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #0a0a0a;
+    color: #e5e5e5;
+    padding: 48px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 64px;
+  }
+  .header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .header .subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: #737373;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .header .status-bar {
+    margin-top: 24px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #737373;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Progress bar */
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 3px;
+    margin-top: 32px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e 25%, #262626 25.5%);
+    width: 100%;
+    border-radius: 3px;
+  }
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .progress-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 25%;
+  }
+  .progress-label.active { color: #22c55e; }
+  .progress-label.current { color: #f59e0b; }
+
+  /* Phase timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin-top: 64px;
+  }
+
+  .phase {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    .phase { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  /* Phase sidebar */
+  .phase-meta {
+    position: relative;
+  }
+  .phase-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .phase-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .phase-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+  .phase-status.complete {
+    background: rgba(34, 197, 94, 0.12);
+    color: #22c55e;
+  }
+  .phase-status.next {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+  }
+  .phase-status.future {
+    background: rgba(82, 82, 82, 0.2);
+    color: #525252;
+  }
+
+  /* Phase content */
+  .phase-content {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 4px;
+    padding: 28px;
+  }
+  .phase.is-complete .phase-content {
+    border-color: rgba(34, 197, 94, 0.15);
+    background: rgba(34, 197, 94, 0.03);
+  }
+  .phase.is-next .phase-content {
+    border-color: rgba(245, 158, 11, 0.2);
+    background: rgba(245, 158, 11, 0.03);
+  }
+
+  .phase-goal {
+    font-size: 0.95rem;
+    color: #a3a3a3;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+  .phase-goal strong { color: #e5e5e5; font-weight: 500; }
+
+  /* Requirement groups */
+  .req-group {
+    margin-bottom: 20px;
+  }
+  .req-group:last-child { margin-bottom: 0; }
+  .req-group-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .req-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .req-item {
+    display: grid;
+    grid-template-columns: 20px 70px 1fr;
+    gap: 10px;
+    align-items: start;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .req-check {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #333;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .req-check.done {
+    background: #22c55e;
+    border-color: #22c55e;
+  }
+  .req-check.done::after {
+    content: '';
+    width: 8px;
+    height: 5px;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transform: rotate(-45deg) translateY(-1px);
+  }
+  .req-id {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #525252;
+    padding-top: 2px;
+  }
+  .req-text { color: #a3a3a3; }
+
+  /* Manual steps callout */
+  .manual-steps {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: rgba(245, 158, 11, 0.06);
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 4px 4px 0;
+  }
+  .manual-steps-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #f59e0b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+  .manual-steps ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .manual-steps li {
+    font-size: 0.85rem;
+    color: #a3a3a3;
+    padding-left: 16px;
+    position: relative;
+  }
+  .manual-steps li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f59e0b;
+  }
+  .manual-steps li.done { color: #525252; text-decoration: line-through; }
+  .manual-steps li.done::before { background: #22c55e; }
+
+  /* Automated badge */
+  .auto-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: rgba(255,255,255,0.03);
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-left: 4px;
+  }
+  .auto-badge.auto { color: #22c55e; }
+
+  /* Divider */
+  .section-divider {
+    height: 1px;
+    background: #1a1a1a;
+    margin: 48px 0;
+  }
+
+  /* V2 deferred */
+  .v2-section {
+    margin-top: 64px;
+    opacity: 0.5;
+  }
+  .v2-section h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #525252;
+    margin-bottom: 16px;
+  }
+  .v2-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .v2-chip {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #404040;
+    border: 1px solid #262626;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+  }
+  .legend-dot.green { background: #22c55e; }
+  .legend-dot.amber { background: #f59e0b; }
+  .legend-dot.gray { background: #333; }
+  .legend-dot.blue { background: #3b82f6; }
+
+  /* Cost summary */
+  .cost-bar {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .cost-card {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .cost-card .cost-service {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: #525252;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .cost-card .cost-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cost-card .cost-note {
+    font-size: 0.75rem;
+    color: #525252;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Byline Agent Roadmap</h1>
+  <div class="subtitle">Zero to Paying Product</div>
+
+  <div class="status-bar">
+    <div class="stat">
+      <div class="stat-value">35</div>
+      <div class="stat-label">Total Requirements</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" style="color: #22c55e;">12</div>
+      <div class="stat-label">Complete</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" style="color: #f59e0b;">23</div>
+      <div class="stat-label">Remaining</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">4</div>
+      <div class="stat-label">Phases</div>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-track">
+    <div class="progress-fill"></div>
+  </div>
+  <div class="progress-labels">
+    <div class="progress-label active">Phase 1 Done</div>
+    <div class="progress-label current">Phase 2 Next</div>
+    <div class="progress-label">Phase 3</div>
+    <div class="progress-label">Phase 4</div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot green"></div>Complete</div>
+  <div class="legend-item"><div class="legend-dot amber"></div>Up Next</div>
+  <div class="legend-item"><div class="legend-dot gray"></div>Future</div>
+  <div class="legend-item"><div class="legend-dot blue"></div>Automated by Claude</div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline">
+
+  <!-- PHASE 1 -->
+  <div class="phase is-complete">
+    <div class="phase-meta">
+      <div class="phase-number">Phase 01</div>
+      <div class="phase-title">Marketing Site</div>
+      <div class="phase-status complete">Complete</div>
+    </div>
+    <div class="phase-content">
+      <div class="phase-goal">
+        Deployed Next.js 16 site with all marketing sections. <strong>Compelling enough that a consultant clicks "Start Free Trial."</strong>
+      </div>
+      <div class="req-group">
+        <div class="req-group-label">Site (10 reqs) + Infra (2 reqs)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-01</div><div class="req-text">Hero with tagline, price, and CTA</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-02</div><div class="req-text">4-step "How It Works" flow</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-03</div><div class="req-text">3 sample LinkedIn posts showing voice quality</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-04</div><div class="req-text">Comparison table (vs DIY, vs ghostwriters)</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-05</div><div class="req-text">Pricing section ($49/mo + feature list)</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-06</div><div class="req-text">7 FAQ items with expand/collapse</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-07</div><div class="req-text">Anti-AI aesthetic (no purple, no icon grids)</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-08</div><div class="req-text">Responsive at 375/768/1024px</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-09</div><div class="req-text">Sticky nav with smooth-scroll</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">SITE-10</div><div class="req-text">LINCHPIN attribution in footer</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">INFRA-01</div><div class="req-text">Next.js 16 deployed on Vercel</div></div>
+          <div class="req-item"><div class="req-check done"></div><div class="req-id">INFRA-07</div><div class="req-text">GitHub repo created and pushed</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase is-next">
+    <div class="phase-meta">
+      <div class="phase-number">Phase 02</div>
+      <div class="phase-title">Checkout + Onboarding + Infra</div>
+      <div class="phase-status next">Up Next</div>
+    </div>
+    <div class="phase-content">
+      <div class="phase-goal">
+        Visitor can <strong>pay $49/mo via Stripe</strong>, fill an <strong>8-field onboarding form</strong>, and have a <strong>Voice Profile built by Claude</strong>. All infrastructure provisioned.
+      </div>
+
+      <div class="req-group">
+        <div class="req-group-label">Payments (5 reqs)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PAY-01</div><div class="req-text">CTA opens Stripe Checkout for $49/mo subscription</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PAY-02</div><div class="req-text">Webhook: checkout.session.completed creates customer in Supabase</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PAY-03</div><div class="req-text">Webhook: subscription.deleted marks customer churned</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PAY-04</div><div class="req-text">After checkout, redirect to /welcome onboarding page</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PAY-05</div><div class="req-text">Race condition: /welcome verifies Stripe session if webhook is slow</div></div>
+        </div>
+      </div>
+
+      <div class="req-group">
+        <div class="req-group-label">Onboarding (5 reqs)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check"></div><div class="req-id">ONBOARD-01</div><div class="req-text">8-field form: name, email, LinkedIn, samples, expertise, audience, topics, avoid</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">ONBOARD-02</div><div class="req-text">Claude builds Voice Profile from writing samples</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">ONBOARD-03</div><div class="req-text">Customer record + voice profile stored in Supabase</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">ONBOARD-04</div><div class="req-text">Welcome email via Resend ("First posts arrive Monday")</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">ONBOARD-05</div><div class="req-text">Customer synced to Notion Customers database</div></div>
+        </div>
+      </div>
+
+      <div class="req-group">
+        <div class="req-group-label">Infrastructure (6 reqs)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-02</div><div class="req-text">Supabase: customers + posts tables <span class="auto-badge auto">Automated</span></div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-03</div><div class="req-text">12 env vars configured in Vercel <span class="auto-badge auto">Automated</span></div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-06</div><div class="req-text">Notion Customers + Posts databases <span class="auto-badge auto">Automated</span></div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-08</div><div class="req-text">Stripe product + $49/mo price <span class="auto-badge auto">Automated</span></div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-09</div><div class="req-text">Stripe webhook endpoint <span class="auto-badge auto">Automated</span></div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-10</div><div class="req-text">.env.example documenting all variables</div></div>
+        </div>
+      </div>
+
+      <div class="manual-steps">
+        <div class="manual-steps-label">Damon Does (Manual Steps)</div>
+        <ul>
+          <li class="done">Create Supabase account</li>
+          <li>Create Resend account + verify bylineagent.com domain (DNS)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase">
+    <div class="phase-meta">
+      <div class="phase-number">Phase 03</div>
+      <div class="phase-title">Weekly Pipeline</div>
+      <div class="phase-status future">Future</div>
+    </div>
+    <div class="phase-content">
+      <div class="phase-goal">
+        Every Monday at 6am CT, all active customers receive <strong>5 voice-matched LinkedIn posts via branded email</strong>. The core product loop works end-to-end.
+      </div>
+
+      <div class="req-group">
+        <div class="req-group-label">Pipeline (9 reqs)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-01</div><div class="req-text">Weekly cron triggers generation for all active customers</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-02</div><div class="req-text">Topic research: 5 timely topics per customer's content lanes</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-03</div><div class="req-text">Each post drafted 150-300 words with voice profile as system prompt</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-04</div><div class="req-text">Quality gate: score 1-10, regenerate if below 7</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-05</div><div class="req-text">Branded HTML email with copy-paste formatting</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-06</div><div class="req-text">Posts stored in Supabase with quality scores</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-07</div><div class="req-text">Posts synced to Notion Posts database</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-08</div><div class="req-text">Topic deduplication (no repeats within 90 days)</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">PIPE-09</div><div class="req-text">Uses waitUntil() for background processing</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase">
+    <div class="phase-meta">
+      <div class="phase-number">Phase 04</div>
+      <div class="phase-title">Launch Polish</div>
+      <div class="phase-status future">Future</div>
+    </div>
+    <div class="phase-content">
+      <div class="phase-goal">
+        Production-ready. <strong>Domain resolves, OG previews work, mobile polished, Stripe live, full E2E test passes.</strong> Ready for first paying customer.
+      </div>
+
+      <div class="req-group">
+        <div class="req-group-label">Launch (2 reqs)</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-04</div><div class="req-text">bylineagent.com pointed to Vercel</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id">INFRA-05</div><div class="req-text">OG metadata + branded OG image on all pages</div></div>
+        </div>
+      </div>
+
+      <div class="req-group">
+        <div class="req-group-label">Success Criteria</div>
+        <div class="req-list">
+          <div class="req-item"><div class="req-check"></div><div class="req-id"></div><div class="req-text">Stripe switched to live mode</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id"></div><div class="req-text">Mobile polish at 375px and 768px</div></div>
+          <div class="req-item"><div class="req-check"></div><div class="req-id"></div><div class="req-text">Full E2E: sign up, pay, onboard, voice profile, cron, email delivered</div></div>
+        </div>
+      </div>
+
+      <div class="manual-steps">
+        <div class="manual-steps-label">Damon Does (Manual Steps)</div>
+        <ul>
+          <li>Point bylineagent.com CNAME to Vercel at registrar</li>
+          <li>Switch Stripe to live mode in dashboard</li>
+          <li>(Optional) Set up Meta Pixel + Facebook Page for ads</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MONTHLY COST -->
+<div class="section-divider"></div>
+
+<h2 style="font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 24px;">Monthly Operating Cost</h2>
+
+<div class="cost-bar">
+  <div class="cost-card">
+    <div class="cost-service">Vercel (Hobby)</div>
+    <div class="cost-price">$0</div>
+    <div class="cost-note">Free tier covers this</div>
+  </div>
+  <div class="cost-card">
+    <div class="cost-service">Supabase (Pro)</div>
+    <div class="cost-price">$10</div>
+    <div class="cost-note">Database + auth</div>
+  </div>
+  <div class="cost-card">
+    <div class="cost-service">Resend</div>
+    <div class="cost-price">$0</div>
+    <div class="cost-note">Free up to 3k emails/mo</div>
+  </div>
+  <div class="cost-card">
+    <div class="cost-service">Claude API</div>
+    <div class="cost-price">~$2-5</div>
+    <div class="cost-note">Per customer/month</div>
+  </div>
+  <div class="cost-card" style="border-color: rgba(245, 158, 11, 0.2);">
+    <div class="cost-service" style="color: #f59e0b;">Total (10 customers)</div>
+    <div class="cost-price" style="color: #f59e0b;">~$60</div>
+    <div class="cost-note">Revenue: $490/mo at $49 each</div>
+  </div>
+</div>
+
+<!-- V2 DEFERRED -->
+<div class="v2-section">
+  <h2>v2 (Deferred)</h2>
+  <div class="v2-list">
+    <div class="v2-chip">Analytics dashboard</div>
+    <div class="v2-chip">Twitter/X support</div>
+    <div class="v2-chip">Agency dashboard</div>
+    <div class="v2-chip">White-label</div>
+    <div class="v2-chip">Content calendar UI</div>
+    <div class="v2-chip">LinkedIn API posting</div>
+    <div class="v2-chip">Self-service portal</div>
+    <div class="v2-chip">A/B voice testing</div>
+    <div class="v2-chip">Meta Pixel integration</div>
+    <div class="v2-chip">Free voice sample</div>
+    <div class="v2-chip">Feedback loop</div>
+    <div class="v2-chip">Voice calibration</div>
+  </div>
+</div>
+
+</body>
+</html>
